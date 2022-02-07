@@ -174,6 +174,14 @@ This styled row should also wrap as expected, but only *when required*.
 > An interesting quote here, most likely sharing some very interesting wisdom.`)
 	rich.Scroll = container.ScrollBoth
 
+	key_label := widget.NewLabel("Key:")
+	key := widget.NewEntry()
+	key.SetText("keyyyyyy")
+
+	TTL_label := widget.NewLabel("TTL:")
+	TTL := widget.NewEntry()
+	TTL.SetText("-1")
+
 	radioAlign := widget.NewRadioGroup([]string{"Text Alignment Leading", "Text Alignment Center", "Text Alignment Trailing"}, func(s string) {
 		var align fyne.TextAlign
 		switch s {
@@ -220,6 +228,9 @@ This styled row should also wrap as expected, but only *when required*.
 		entryLoremIpsum.Wrapping = wrap
 		rich.Wrapping = wrap
 
+		key.Wrapping = wrap
+		key.Refresh()
+
 		label.Refresh()
 		hyperlink.Refresh()
 		entryLoremIpsum.Refresh()
@@ -233,6 +244,7 @@ This styled row should also wrap as expected, but only *when required*.
 			layout.NewSpacer(),
 			radioWrap,
 		),
+		container.NewHBox(key_label, key, TTL_label, TTL),
 		label,
 		hyperlink,
 	)
